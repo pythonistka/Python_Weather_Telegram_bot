@@ -23,11 +23,15 @@ def get_weather(city, open_weather_token):
         wind = data["wind"]["speed"]
         sunrise_timestamp = datetime.datetime.fromtimestamp(data["sys"]["sunrise"])
         sunset_timestamp = datetime.datetime.fromtimestamp(data["sys"]["sunset"])
+        lenght_of_the_day = datetime.datetime.fromtimestamp(data["sys"]["sunset"]) - datetime.datetime.fromtimestamp(data["sys"]["sunrise"])
 
-        print(f"Погода в городе: {city}\nТемпература: {cur_weather}С\n"
+        print(f"****{datetime.datetime.now().strftime('%Y-%m-%d %H-%M')}****\n"
+              f"Погода в городе: {city}\nТемпература: {cur_weather}°С\n"
               f"Влажность: {humidity}%\nДавление: {pressure} мм.рт.ст.\n"
               f"Скорость ветра: {wind} м/с\nВосход: {sunrise_timestamp}\n"
-              f"Закат: {sunset_timestamp}")
+              f"Закат: {sunset_timestamp}\n"
+              f"Продолжительность светового дня: {lenght_of_the_day}\n"
+              f"Хорошего дня!")
 
     except Exception as ex:
         print(ex)
